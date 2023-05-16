@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Update Event Request</title>
+</head>
+<body class="text-bg-dark p-3" background="{{ url_for('static', filename='./spiritband.jpg') }}">
+    <div class="px-5" style="margin-top: 3%">
+    <h1 class="container text-bg-info w-25 px-5 row d-flex justify-content-center">Hello {{user_spirit.first_name|capitalize}}!!</h1>
+    <h2 class="container bg-warning w-25 px-5 row d-flex justify-content-center">Update Event Request</h2>
+        <div style=" background-color: black; color: aliceblue; margin-left: -.75%;" class="ps-5 me-5 pt-3 pb-2">
+            <form action="/edit_event_request/{{editevent.id}}/process" method="post">
+                <div class="row mb-3">
+                    <label for="name" for="formGroupExampleInput" class="col-sm-2 col-form-label">Event Name:</label>
+                    <input type="text" name="name" class="form-control w-50 p-3" id="formGroupExampleInput" value="{{editevent.name}}">
+                </div>
+                <div class="row mb-3">
+                    <label for="inputComments3" class="col-sm-2 col-form-label">Event Location</label>
+                    <input type="text" name="location" value="{{editevent.location}}" class="form-control w-50 p-3">
+                </div>
+                <div class="row mb-3">
+                    <label for="event_date" class="col-sm-2 col-form-label">Event Date:</label>
+                    <input type="date" name="event_date" id="event_date" class="form-control w-50 p-3" value={{editevent.event_date}}>
+                </div>
+                <div class="row mb-3">
+                    <label for="details" class="col-sm-2 col-form-label">Event Details</label>
+                    <div class="col-sm-4">
+                        <textarea class="form-control" name="details" id="details" rows="4" style="margin-left: -2%; width: 156%;">{{editevent.details}}</textarea>
+                    </div>
+                </div>
+                    <input type="submit" value="Review Submission" class="btn btn-primary" style="margin-left: 84%">
+            </form>
+            <div class="container row d-flex justify-content-end" style="margin-top: -2%; margin-left: -2%;">
+                <a href="/dashboard" class="btn btn-primary offset-1 col-1" style="height: 70%;">Back To Dashboard</a>
+                <a href="/destroy/{{editevent.id}}" class="btn btn-primary offset-1 col-1" style="height: 70%;">Delete Event Request</a>
+                <a href="/logout" class="btn btn-primary offset-1 col-1" style="height: 70%;">Logout</a>
+            </div> 
+        </div>
+    </div>
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <div class="container d-flex justify-content-center mb-n3 border border-primary border border-3 ps-3 bg-warning p-3" style="margin-top: 2%">
+            <div class="p-2">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+            <div class="p-2">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{message}}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+    {% endif %}
+{% endwith %}         
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

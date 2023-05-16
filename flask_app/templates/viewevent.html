@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Spirit Event Request Review</title>
+</head>
+<body class="text-bg-dark p-3" background="{{ url_for('static', filename='./spiritpics2.jpg') }}">
+<div class="px-5" style="margin-top: 3%">
+    <div class="text-bg-warning p-3 border border-dark border-4 rounded rounded-3 p-5">
+        <div class="container row justify-content-end mx-auto mt-2" style="margin-top: -3%;">
+            <h1>{{user_spirit.first_name|capitalize}}'s Event Request Review</h1>
+            <h2> Is {{event_review.name}} Request Correct? </h2>
+            <div class="row border border-dark border-4 rounded rounded-3 p-3 fs-4 text-bg-info">
+                <div class="row d-flex justify-content-around">
+                <h1> {{event_review.name}}</h1> 
+                </div>
+                <h2>Event Location: {{event_review.location}}</h2>
+
+                <h2>Event Date: {{event_review.event_date.strftime('%B %d, %Y')}}</h2>
+
+                <h2>Event Details: {{event_review.details}}</h2>
+            </div>
+            <div class="container row d-flex justify-content-end" style="margin-top: 6%;">
+                <a href="/destroy/{{event_review.id}}" class="btn btn-primary offset-1 col-1" style="height: 90%;">Delete Event Request</a>
+                <a href="/edit_event_request/{{event_review.id}}" class="btn btn-primary offset-1 col-1" style="height: 70%;">Edit Event Request</a>
+                <a href="/dashboard" class="btn btn-primary offset-1 col-1" style="height: 70%;">Back To Homepage</a>
+                <a href="/requestconfirmed" class="btn btn-primary offset-1 col-1" style="height: 70%;">Submit Request</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>
